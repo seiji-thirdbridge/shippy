@@ -1,0 +1,15 @@
+# Ignore all
+*
+
+# Unignore all with extensions
+!*.*
+
+# Unignore all dirs
+!*/
+
+# Ignore `bin` dirs
+bin/
+*/bin/*
+
+# Ignore IDE folders
+.idea
