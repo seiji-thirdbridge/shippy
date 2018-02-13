@@ -13,3 +13,7 @@ bin/
 
 # Ignore IDE folders
 .idea
+
+consignment-service/consignment-service
+
+consignment-cli/consignment-cli
