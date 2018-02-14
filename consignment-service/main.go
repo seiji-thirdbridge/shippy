@@ -11,27 +11,27 @@ import (
 	"golang.org/x/net/context"
 )
 
-type Repository interface {
+type repository interface {
 	Create(*pb.Consignment) (*pb.Consignment, error)
 	GetAll() []*pb.Consignment
 }
 
-type ConsignmentRepository struct {
+type consignmentRepository struct {
 	consignments []*pb.Consignment
 }
 
-func (repo *ConsignmentRepository) Create(consignment *pb.Consignment) (*pb.Consignment, error) {
+func (repo *consignmentRepository) Create(consignment *pb.Consignment) (*pb.Consignment, error) {
 	updated := append(repo.consignments, consignment)
 	repo.consignments = updated
 	return consignment, nil
 }
 
-func (repo *ConsignmentRepository) GetAll() []*pb.Consignment {
+func (repo *consignmentRepository) GetAll() []*pb.Consignment {
 	return repo.consignments
 }
 
 type service struct {
-	repo         Repository
+	repo         repository
 	vesselClient vesselProto.VesselServiceClient
 }
 
@@ -65,7 +65,7 @@ func (s *service) GetConsignments(ctx context.Context, req *pb.GetRequest, res *
 }
 
 func main() {
-	repo := &ConsignmentRepository{}
+	repo := &consignmentRepository{}
 
 	srv := micro.NewService(
 		micro.Name("go.micro.srv.consignment"),
