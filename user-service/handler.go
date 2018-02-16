@@ -9,8 +9,8 @@ import (
 )
 
 type service struct {
-	repo repository
-	// tokenService Authable
+	repo         repository
+	tokenService Authable
 }
 
 func (srv *service) Get(ctx context.Context, req *pb.User, res *pb.Response) error {
